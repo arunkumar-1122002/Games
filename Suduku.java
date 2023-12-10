@@ -43,10 +43,8 @@ public class Suduku
      System.out.println("Congrates You Won the Game");
     }
     private static void copyBoard(int[][] playingboard2) {
-        for (int i = 0; i < boardSize; i++)
-         {
-            for (int j = 0; j <boardSize; j++) 
-            {
+        for (int i = 0; i < boardSize; i++){
+            for (int j = 0; j <boardSize; j++) {
                 AnswerBoard[i][j]=playingBoard[i][j];
             }
         }
@@ -90,12 +88,13 @@ public class Suduku
             System.out.print(i+" |");
            for (int j = 0; j < Board.length; j++)
             {
+                int temp=Board[i][j];
             if((j+1)%3==0)
             {
-                System.out.print(" "+Board[i][j]+" |");
+                System.out.print(" "+((temp==0)?" ":temp)+" |");
             }
             else
-            System.out.print(" "+Board[i][j]+"  ");
+            System.out.print(" "+((temp==0)?" ":temp)+"  ");
            }
            if((i+1)%3==0)
            System.out.println("\n  |_____ _____|___________|___________|"); 
@@ -106,12 +105,11 @@ public class Suduku
     static boolean createBoard(int[][] CurrentBoard,int row,int col)
 {
       if(row==boardSize-1 && col==boardSize)
-      {
+{
         playingBoard=CurrentBoard;
            return true;
       }
-      if(col==boardSize)
-      {
+      if(col==boardSize){
       row++;
       col=0;
       }
@@ -136,15 +134,11 @@ for (int i = 1; i < boardSize+1; i++)
 }
 public static boolean isSafe(int[][] currentBoard,int n,int row,int col) 
     {
-        for (int i = 0; i < boardSize; i++) 
-        {
+        for (int i = 0; i < boardSize; i++) {
          if(currentBoard[row][i]==n)
-         return false;   
-        }
-        for (int j = 0; j < boardSize; j++)
-         {
-            if(currentBoard[j][col]==n)
-            return false;
+         return false; 
+         if(currentBoard[i][col]==n)
+            return false;  
         }
         row=row-row%3;
         col=col-col%3;
@@ -158,9 +152,7 @@ public static boolean isSafe(int[][] currentBoard,int n,int row,int col)
     static void setFirstrow()
     {
         for (int i = 0; i <boardSize; i++)
-         {
             playingBoard[0][i]=i+1;
-        }
         Random rd=new Random();
         for(int i=0;i<boardSize;i++)
         {
